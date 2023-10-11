@@ -1,0 +1,77 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage{times}
+\usepackage{amsmath}
+\usepackage{circuitikz}
+\usepackage{geometry}
+
+\begin{document}
+
+    \title{Assignment 1}
+    \author{Shawal Mbalire \\ 21/U/0851}
+    \date{\today}
+    \maketitle
+
+    \section{Problem 1: Find the ABCD parameters of the network below }
+
+    \begin{center}
+    \begin{circuitikz}
+        \draw
+        (0,0) to [short, o-o] (8,0)
+        (4,0) to [twoport, t=$Y$] (4,3)
+        (4,3) to [twoport, t=$Z_S$] (0,3)
+        (4,3) to [twoport, t=$Z_r$] (8,3)
+        ;
+    \end{circuitikz}
+    \end{center}
+
+    \[V_i=AV_o+BI_o\]
+    \[I_i=CV_o+DI_o\]
+    The receiving end is open-circuited meaning the receiving end current $I_o = 0$.
+    \[V_i=I_s(Z_s + Y)\]
+    \[V_o = I_S\left(\frac{Y}{Y+Z_s}\right)~by~voltage~division\]
+    \[\frac{V_i}{V_o} = Y\]
+    \[V_i = YV_o\]
+    \[ A = Y , B=0\]
+
+    \section{Problem 2: Find the y parameters and ABCD parameters of the network below}
+    \subsection{y parameters}
+    \begin{center}
+    \begin{circuitikz}
+        \draw
+            (0,0) to [short, o-o] (12,0)
+            (4,0) to [twoport, t=$\frac{Y}{2}$] (4,3)
+            (8,0) to [twoport, t=$\frac{Y}{2}$] (8,3)
+            (4,3) to [twoport, t=$Z$] (8,3)
+            (0,3) to [short, o-o] (4,3)
+            (8,3) to [short, o-o] (12,3)
+            ;
+    \end{circuitikz}
+    \end{center}
+    \[Y_{Y11} = \frac{1}{Z_{Y11}}, \quad Y_{Y12} = -\frac{1}{Z_{Y12}}, \quad Y_{Y21} = -\frac{1}{Z_{Y21}}, \quad Y_{Y22} = \frac{1}{Z_{Y22}}\]
+    \[Y_{Zr11} = \frac{1}{Z_{Zr11}}, \quad Y_{Zr12} = -\frac{1}{Z_{Zr12}}, \quad Y_{Zr21} = -\frac{1}{Z_{Zr21}}, \quad Y_{Zr22} = \frac{1}{Z_{Zr22}}\]
+    \[Y_{\text{net11}} = Y_{Y11} + Y_{Y12} + Y_{Zr11} + Y_{Zr22}\]
+    \[Y_{\text{net12}} = Y_{Y12} + Y_{Zr12}\]
+    \[Y_{\text{net21}} = Y_{Y21} + Y_{Zr21}\]
+    \[Y_{\text{net22}} = Y_{Y22} + Y_{Y21} + Y_{Zr11} + Y_{Zr22}\]
+
+    \subsection{ABCD parameters}
+    \begin{center}
+    \begin{circuitikz}
+        \draw
+            (0,0) to [short, o-o] (12,0)
+            (4,0) to [twoport, t=$\frac{Y}{2}$] (4,3)
+            (8,0) to [twoport, t=$\frac{Y}{2}$] (8,3)
+            (4,3) to [twoport, t=$Z$] (8,3)
+            (0,3) to [short, o-o] (4,3)
+            (8,3) to [short, o-o] (12,3)
+            ;
+    \end{circuitikz}
+    \end{center}
+    \[A_{\text{net}} = A_Y + \frac{B_Y}{Z_{Zr11}}C_Y\]
+    \[B_{\text{net}} = B_Y + \frac{B_Y}{Z_{Zr11}}D_YC_Y\]
+    \[C_{\text{net}} = C_Y + D_YC_Y\]
+    \[D_{\text{net}} = D_Y + \frac{C_Y}{Z_{Zr11}}D_YC_Y\]
+
+
+\end{document}
