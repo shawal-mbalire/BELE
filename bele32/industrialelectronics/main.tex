@@ -1,0 +1,144 @@
+\documentclass{article}
+
+\title{Industrial Electronics}
+\author{Shawal Mbalire 21/U/0851}
+\begin{document}
+
+    \maketitle
+    \tableofcontents
+    \newpage
+
+    \section{Introduction}
+    The class focuses on pwer conversion for a systems
+    Converters can be clasified as
+    \begin{itemize}
+        \item ac-ac 
+        \item ac-dc 
+        \item dc-ac 
+        \item dc-dc 
+    \end{itemize}
+    \subsection{Exmples and applications}
+    \begin{enumerate}
+        \item Fan regulator
+        \item Light dimmer
+        \item Motor speed controller
+        \item Inverters
+        \item Solar power systems
+        \item Power supply systems
+    \end{enumerate}
+
+    \begin{itemize}
+        \item Electrical motion caused about by motors and control
+        \item Electric temperature change(heating,cooling, welding) and control
+        \item Induction
+    \end{itemize}
+
+    \section{Power Efficiency}
+    I deal case has a power Efficiency of one such as inverers and rectifiers
+
+    powerlosses = heat = cooling = costs
+
+    \textbf{Comparisoons between ICEs and EVs}
+
+    if you're comparing look for relatively similar components eg bajaj to zembo
+
+    Cost is relative of the applications
+
+    \section{Componentts}
+    ideally lossless components. Periodic signals. Here we look at average power in a period equal to zero
+
+    \textbf{Componetns}
+    \begin{enumerate}
+        \item Capacitors
+        \item Ideal inductor/ transformer
+        \item Electronic component(diodes, transistors, thyristors)
+        \item for BJTs either in cutoff or in saturation (switching mode)
+        \item Avoid resistance as resistors are lossy
+    \end{enumerate}
+    switcing mode power supplys (SMPS)
+    even stepping up and down we would love to avoid resistors
+
+    \section{switching}
+
+    \subsection{ideal switch characteristics}
+     on state, ideal switch has zero voltage and non zero current
+
+     Capable of carrying infinite current
+
+     off state has non zero voltage and zero current accross
+
+     it must be able to block an infinite voltage
+
+
+     \textbf{Why is it beter to have a robot}
+
+     mechanical switches, bouncing
+
+     electromagnetic switches(em relays in cars)
+
+     electronic switches(diodes,transistors, mosfets) temperature bound, leakage current
+
+     compare the different types of switches
+     rectifiers would require 50Hz switching
+
+     \textbf{Single phase or three phase\\
+     teslaa charge, mail mill} three phase best for power Efficiency in machines thus if you need a 3 phase machine you can wire up 3phase.
+     Expense, custom components
+     Factory rates. Cheap to buy , cheap to operate
+
+
+     ideal vs ral world
+
+     how is 3 phase power if some phases aren't used
+
+    \subsection{Real switch characteristics}
+    \begin{enumerate}
+        \item On state 
+    \end{enumerate}
+
+    \subsection{switch control}
+    brick wall is an ideal filter
+
+    uncontrolled switch (diode)
+
+    fully controlled switch (3 legged)
+
+    semi controlled- turn on with trminal but can't swithc off with terminal
+
+    FET is voltage controlled, BJT is current controlled
+
+    \section{device physics}
+
+    \subsection{p-n junction}
+    junction
+    forward bias on switch,conductor
+    reverse bias off switch,insulator
+
+    power diode
+    the juction might be doped with p+,n-,n+ so as to reduce the available electrons thus increasing the insulation properties for the diode to switch. 
+    This gives a non even depletion region
+    \begin{enumerate}
+        \item Physically larger
+        \item vrtical configuration
+    \end{enumerate}
+    Useful for rectification. We can have a break down voltage of about 2kV
+    IV characteristic graph
+
+    Some rectification circuits are applied after a step down transformer as dc devices are usually of low power
+
+    Welding macines?
+    \subsubsection*{Homework}
+    D52P2400s diode 
+
+    Junction capacitance 
+
+    DIfferences between power diodes and normal diodes, transient xtics, reverse recovery tie
+     
+    Switching losses
+
+    \subsection{Bi Polar Juction transistors Q}
+
+
+
+
+\end{document}

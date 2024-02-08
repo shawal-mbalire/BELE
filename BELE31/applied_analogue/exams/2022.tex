@@ -1,0 +1,150 @@
+\section{Final Exam 2022}
+
+
+\subsection{Question 1}
+Consider the op amp based active filter below. It uses a dual power supply with voltages of $\pm5V$. Let 
+$R_1=20k\Omega$
+$R_2=10k\Omega$
+$R_f=20k\Omega$
+$C_1=20nF$
+$C_2=10nF$
+$C_3=10nF$
+$C_4=10nF$.
+
+\begin{center}
+\begin{circuitikz}[european] \draw
+    (0,0) node[op amp] (opamp) {$A_V$}
+    (opamp.+) node[ground] {}
+
+    (4,0) node[label=left:$V_o$] {} 
+    (opamp.up)   to[C, l=$C_4$] ++(0, 1.5) to node[ground]{} ++(1.5,0)
+    (opamp.down) to[C, l=$C_3$] ++(0,-1.5) to node[ground]{} ++(0,0.5)
+    
+    
+    (-2,0.5) node[label=south:$A$] {} 
+    (-3,0.5) node[label=south:$A$] {} 
+    (opamp.out) -- ++(1,0) -- ++(0,3) to[C, l=$C_2$] (-2,3) -- ++(0,-2.5)-| (opamp.-)
+    (opamp.out) -- ++(2,0) -- ++(0,4) to[R, l=$R_f$] (-3,4) -- ++(0,-3.5)-| (opamp.-)
+
+
+    (-6,0.5) node[label=$B$] {} 
+    (opamp.-) to[C, l=$C_1$,-*] (-6,0.5){} to[R, l=$R_1$] (-8,0.5){}
+    node[label=left:$V_i$] {} 
+    (-6,0.5) to[R, l=$R_2$] (-6,-2){}++(0,-1.5) to node[ground,anchor=north]{}(-6,-2) 
+    
+;\end{circuitikz}
+\end{center}
+
+\subsubsection{Determine the system transfer function $H(s) = \frac{V_o(s)}{V_i(s)}$ give the answer in the form 
+\[ H(s) = \frac{A(1+as+bs^2+cs^3)}{(1+ds+es^2+fs^3)}\]
+where A,a,b,c,d,e,f are real constants.}
+\begin{center}
+\[ H(s) = \frac{V_o(s)}{V_i(s)} \]
+We first convert the values to s domain
+\begin{circuitikz}[european] \draw
+    (0,0) node[op amp] (opamp) {$A_V$}
+    (opamp.+) node[ground] {}
+
+    (4,0) node[label=left:$V_o$] {} 
+    (opamp.up)   to[C, l=$\frac{1}{sC_4}$] ++(0, 1.5) to node[ground]{} ++(1.5,0)
+    (opamp.down) to[C, l=$\frac{1}{sC_3}$] ++(0,-1.5) to node[ground]{} ++(0,0.5)
+    
+    
+    (-2,0.5) node[label=south:$A$] {} 
+    (-3,0.5) node[label=south:$A$] {} 
+    (opamp.out) -- ++(1,0) -- ++(0,3) to[C, l=$\frac{1}{sC_2}$] (-2,3) -- ++(0,-2.5)-| (opamp.-)
+    (opamp.out) -- ++(2,0) -- ++(0,4) to[R, l=$R_f$] (-3,4) -- ++(0,-3.5)-| (opamp.-)
+
+
+    (-6,0.5) node[label=$B$] {} 
+    (opamp.-) to[C, l=$\frac{1}{sC_1}$,-*] (-6,0.5){} to[R, l=$R_1$] (-8,0.5){}
+    node[label=left:$V_i$] {} 
+    (-6,0.5) to[R, l=$R_2$] (-6,-2){}++(0,-1.5) to node[ground,anchor=north]{}(-6,-2) 
+    
+;\end{circuitikz}
+Voltage at node A accross the parallel combination of R and C is given by
+\[ V_A - V_o = i_A(R_f||C_2)\]
+\[ V_A - V_o = i_A\left(\frac{R_f*\frac{1}{sC_2}}{R_f+\frac{1}{sC_2}}\right)\]
+\[ V_A - V_o = i_A\left(\frac{R_f}{1+sR_fC_2}\right)\]
+Assuming no current flows into the op amp and the negative terminal connected to positive terminal, we get $V_A = 0$ thus
+\[ V_o = i_A\left(\frac{R_f}{1+sR_fC_2}\right)~equation~i\]
+Using KCL at node B(considering all currents into B equal zero)
+\[\frac{V_i-V_B}{R_1} + \frac{0-V_B}{R_2}+\frac{V_A-V_B}{\frac{1}{sC_1}}=0\]
+\[\frac{V_i-V_B}{R_1} + \frac{0-V_B}{R_2}+\frac{0-V_B}{\frac{1}{sC_1}}=0\]
+\[\frac{V_i-V_B}{R_1} + \frac{-V_B}{R_2}+-V_BsC_1=0\]
+\[\frac{V_i}{R_1} -\frac{V_B}{R_1} - \frac{V_B}{R_2}-V_BsC_1=0\]
+\[\frac{V_i}{R_1} =\frac{V_B}{R_1} + \frac{V_B}{R_2}+V_BsC_1\]
+\[\frac{V_i}{R_1} =V_B\left(\frac{1}{R_1} + \frac{1}{R_2}+sC_1\right)\]
+\[\frac{V_i}{R_1} =V_B\left(\frac{R_2+R_1+R_1R_2sC_1}{R_1R_2}\right)\]
+\[V_B = \frac{V_i}{R_1}\frac{R_1R_2}{R_2+R_1+R_1R_2sC_1}\]
+\[V_B = \frac{V_iR_2}{R_2+R_1+R_1R_2sC_1}\]
+Using KCL at node A(considering all currents into A equal all currents out of A)
+we get $i_A$ as the current accross$C_1$
+\[i_A = \frac{V_B}{\frac{1}{sC1}}\]
+\[i_A = V_BsC_1\]
+\[i_A = \frac{V_iR_2sC_1}{R_2+R_1+R_1R_2sC_1}\]
+from equation i, we get
+\[ V_o = \frac{V_iR_2sC_1}{R_2+R_1+R_1R_2sC_1}\left(\frac{R_f}{1+sR_fC_2}\right)\]
+\[ V_o = \frac{V_iR_2sC_1R_f}{(R_2+R_1+R_1R_2sC_1)(1+sR_fC_2)}\]
+\[ \frac{V_o}{V_i} = \frac{R_2sC_1R_f}{(R_2+R_1+R_1R_2sC_1)(1+sR_fC_2)}\]
+\[ \frac{V_o}{V_i} = \frac{R_2sC_1R_f}{R_2+R_1+R_1R_2sC_1+sR_fC_2+R_1R_2s^2C_1C_2}\]
+\[ \frac{V_o}{V_i} = \frac{10k*s*20n*20k}{10k+20k+20k*10k*s*20n+s*20k*10n*+20k*10k*s^2*10n*20n}\]
+\[ \frac{V_o}{V_i} = \frac{4s}{30k+4s+0.0002s+4*10^{-8}s^2
+}\]
+
+
+\end{center}
+
+\subsubsection{Is this a low pass filter, high pass filter or band pass filter?}
+
+\subsubsection{WHat is the order of the filter?}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Question 2}
+
+
+\subsubsection{Design an amplifier that produces an output voltage $V_o(t)$ governed by the expression, $$v_o(t)=2.5v_1(t)-0.4v_2(t)+2v_3(t)-\frac{1}{4}v_4(t)$$, where $v_1(t)$, $v_2(t)$, $v_3(t)$ and $v_4(t)$ are the input voltages. Show all the components and their values. Keep the number of components in your circuit as small as possible. That will reduce the cost of your amplifier and for that you will be rewarded more points.}
+
+
+
+
+\subsubsection{Give two properties of an ideal op-amp.}
+\begin{itemize}
+    \item Infinite open loop gain
+    \item Infinite input impedance
+    \item Zero output impedance
+    \item Infinite bandwidth
+    \item Zero input offset voltage
+    \item Infinite slew rate
+\end{itemize}
+
+
+
+\subsection{Question 3\\ Consider the oscillator circuit below that uses a dual power supply at $\pm5C$ and outputs a voltage $V_o(t)=2.5sin(2\pi f_ot)$. The circuit parameters are 
+$R_1=1.5k\Omega$
+$R_3=1.5k\Omega$
+$R_4=3.3k\Omega$
+$C_1=1nF$
+$C_2=2nF$
+}
+
+
+Certainly! Below is an example code for a Wien bridge oscillator implemented using operational amplifiers (op-amps) and the circuitikz package in LaTeX. This oscillator circuit utilizes two op-amps to create the feedback network needed for oscillation.
+
+\begin{circuitikz}
+    \draw 
+    (0,0) node[op amp] (opamp) {}
+    ;
+    
+\end{circuitikz}
